@@ -10,7 +10,7 @@
 
 **An AI-powered civic assistant that helps Indian citizens understand their rights, file grievances, and navigate official government complaint systems.**
 
-[🚀 Live Demo](#) • [📖 Documentation](#local-setup) • [🤝 Contributing](#author)
+[🚀 Live Demo](https://citizens-rights-navigator.vercel.app/) • [📖 Documentation](#local-setup) 
 
 </div>
 
