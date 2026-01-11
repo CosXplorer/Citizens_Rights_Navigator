@@ -1,4 +1,7 @@
-const API = import.meta.env.VITE_BACKEND_URL;
+const RAW = import.meta.env.VITE_BACKEND_URL;
+
+// Remove trailing slash if present
+const API = RAW.endsWith("/") ? RAW.slice(0, -1) : RAW;
 
 export async function askGrievance(query) {
   const response = await fetch(`${API}/ask`, {
