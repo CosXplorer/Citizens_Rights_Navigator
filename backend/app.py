@@ -7,16 +7,13 @@ from agents import grievance_graph
 app = FastAPI()
 
 # ================================
-# CORS CONFIGURATION (IMPORTANT)
+# CORS CONFIGURATION (PRODUCTION SAFE)
 # ================================
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",  # Vite frontend
-        "http://127.0.0.1:5173",
-    ],
+    allow_origins=["*"],   # Allow Vercel, localhost, Postman, etc.
     allow_credentials=True,
-    allow_methods=["*"],  # Allow POST, OPTIONS, etc.
+    allow_methods=["*"],  # POST, OPTIONS, etc
     allow_headers=["*"],
 )
 
@@ -33,10 +30,20 @@ class QueryRequest(BaseModel):
 @app.post("/ask")
 def ask_grievance(req: QueryRequest):
     state = {
-        "raw_query": req.query
+        "raw_query": req.query,
+        "query": "",
+        "language": "",
+        "kb_entry": None,
+        "response": ""
     }
+
     result = grievance_graph.invoke(state)
     return {"response": result["response"]}
+
+
+# ================================
+# HEALTH CHECK
+# ================================
 @app.get("/")
 def root():
     return {"status": "Backend running"}
