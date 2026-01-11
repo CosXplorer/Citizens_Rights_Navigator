@@ -3,5 +3,5 @@ uvicorn
 langgraph
 langchain
 langdetect
-react-markdown
+langchain-google-genai
 pydantic
